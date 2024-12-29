@@ -1,64 +1,93 @@
-body,html {
-    width: 100vw;
-    background-color: black;
-    margin: 0rem;
-    overflow: hidden;
-    min-height: 100%;
-    }
+body, html {
+  width: 100vw;
+  background-color: black;
+  margin: 0rem;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+/* Menu container - initially hidden with opacity, scale, and visibility */
+.site-container {
+  display: flex;
+  opacity: 0; /* Start hidden */
+  transform: scale(0.9); /* Start scaled down */
+  visibility: hidden; /* Hidden for interactivity */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10; /* Ensure the menu is on top */
+  width: 100vw;
+  min-height: 100vh;
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out, visibility 2s 2s; /* Adjusted transition time to 1s for smoothness */
+}
+
+/* When menu is visible */
+.site-container.visible {
+  opacity: 1; /* Fully visible */
+  transform: scale(1); /* Normal size */
+  visibility: visible; /* Make it interactive */
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out; /* Apply transition on appearance */
+}
+
+/* House icon (menu button) */
+.menu-label {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  font-size: 3rem; /* Adjust the size of the icon */
+  text-align: center;
+  background: #282c34;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out; /* Adjusted for the same transition time */
+  z-index: 20;
   
-    /* index.html */
-  
-  .site-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    width: 100vw;
-    position: fixed;
-  }
-  
-  #image-track {
-    display: flex;
-    gap: 4vmin;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(0%, -50%); 
-    user-select: none; /* -- Prevent image highlighting -- */
-  }
-  
-  #image-track > .image {
-    width: 40vmin;
-    height: 56vmin;
-    object-fit: cover;
-    object-position: 100% center;
-  }
-    
-  /* cv.html */
-  
-  .hero-image {
-    display: flex;
-    position: relative;
-    left: 0;
-    top: 0;
-    height: 20vh;
-    width: 100vw;
-  }
-  
-  .hero-image > .image {
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    object-position: 100% center;
-  }
-  
-  .cv-content {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: auto;
-    width: 100%;
-  }
-  
-  .footer-content {
-  
-  }
+  /* Start with hidden */
+  opacity: 0;
+}
+
+/* When the menu is visible, the opacity will change to 1 */
+.menu-label.visible {
+  opacity: 1;
+}
+
+.menu-label h1 {
+  margin: 0; /* Remove any default margin from h1 */
+  padding: 0; /* Remove padding if any */
+  font-size: inherit; /* Inherit font-size from .menu-label */
+}
+
+/* Make the button disappear when the menu is visible */
+.menu-label.hidden {
+  opacity: 0; /* Hide button */
+  visibility: hidden; /* Remove interaction */
+  pointer-events: none; /* Disable clicks on the button */
+}
+
+/* Image styles */
+.image {
+  width: 100%;
+  transition: object-position 0.6s ease;
+}
+
+/* The image track container */
+#image-track {
+  display: flex;
+  gap: 4vmin;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(0%, -50%);
+  user-select: none;
+}
+
+#image-track > .image {
+  width: 40vmin;
+  height: 56vmin;
+  object-fit: cover;
+  object-position: 100% center;
+}

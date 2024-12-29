@@ -1,8 +1,16 @@
-import React, { useRef } from "react";
-import "./Menu.css"; // Assuming styles for .site-container and .image are in this CSS file
+import React, { useState, useRef, useEffect } from "react";
+import "./Menu.css"; // Make sure your styles are in this file
 
 const Menu = () => {
+  const [isVisible, setIsVisible] = useState(false); // Controls the visibility of the menu
+  const [isLoaded, setIsLoaded] = useState(false); // To control the initial loading and animation of the house icon
+
   const trackRef = useRef(null);
+
+  useEffect(() => {
+    // Trigger the fade-in effect after the component is mounted
+    setIsLoaded(true);
+  }, []);
 
   const handleOnDown = (e) => {
     trackRef.current.dataset.mouseDownAt = e.clientX;
@@ -61,27 +69,44 @@ const Menu = () => {
   ];
 
   return (
-    <div
-      className="site-container"
-      onMouseDown={handleOnDown}
-      onTouchStart={(e) => handleOnDown(e.touches[0])}
-      onMouseUp={handleOnUp}
-      onTouchEnd={(e) => handleOnUp(e.touches[0])}
-      onMouseMove={handleOnMove}
-      onTouchMove={(e) => handleOnMove(e.touches[0])}
-    >
-      <div id="image-track" ref={trackRef} data-mouse-down-at="0" data-prev-percentage="0">
-        {images.map((image) => (
-          <img
-            key={image.id}
-            src={image.src}
-            alt={image.alt}
-            className="image"
-            draggable="false"
-            id={image.id}
-            onClick={() => handleImageClick(image.id)}
-          />
-        ))}
+    <div>
+      {/* Button to toggle visibility */}
+      <div
+        className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${isVisible ? "hidden" : ""}`}
+        onClick={() => setIsVisible(!isVisible)} // Toggle visibility of the menu
+      >
+        {/* Font Awesome House Icon */}
+        <i className="fas fa-home"></i>
+      </div>
+
+      {/* Menu Container */}
+      <div
+        className={`site-container ${isVisible ? "visible" : ""}`}
+        onMouseDown={handleOnDown}
+        onTouchStart={(e) => handleOnDown(e.touches[0])}
+        onMouseUp={handleOnUp}
+        onTouchEnd={(e) => handleOnUp(e.touches[0])}
+        onMouseMove={handleOnMove}
+        onTouchMove={(e) => handleOnMove(e.touches[0])}
+      >
+        <div
+          id="image-track"
+          ref={trackRef}
+          data-mouse-down-at="0"
+          data-prev-percentage="0"
+        >
+          {images.map((image) => (
+            <img
+              key={image.id}
+              src={image.src}
+              alt={image.alt}
+              className="image"
+              draggable="false"
+              id={image.id}
+              onClick={() => handleImageClick(image.id)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
