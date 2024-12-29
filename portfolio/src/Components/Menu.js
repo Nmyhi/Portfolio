@@ -73,7 +73,7 @@ const Menu = () => {
     <div>
       <div className={`main-title ${isTitleVisible ? "visible" : ""}`}>
       <h1 className="raleway-thin-font-weight-100">Welcome to my portfolio!</h1>
-    </div>
+      </div>
       {/* Button to toggle visibility */}
       <div
       className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${isVisible ? "hidden" : ""}`}

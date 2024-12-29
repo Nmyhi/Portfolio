@@ -55,6 +55,12 @@ body, html {
   opacity: 1;
 }
 
+.menu-label:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(224, 228, 231, 0.6);
+  color: #c2c8cc; /* Slightly change the text color for effect */
+  transition: box-shadow 1.5s ease, color 1.5s ease; /* Slowed down the glow effect */
+}
+
 .menu-label h1 {
   margin: 0; /* Remove any default margin from h1 */
   padding: 0; /* Remove padding if any */
@@ -105,3 +111,4 @@ body, html {
   opacity: 1; /* Fully visible */
   transform: translateY(0); /* Reset position */
 }
+
