@@ -1,0 +1,64 @@
+body,html {
+    width: 100vw;
+    background-color: black;
+    margin: 0rem;
+    overflow: hidden;
+    min-height: 100%;
+    }
+  
+    /* index.html */
+  
+  .site-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 100vw;
+    position: fixed;
+  }
+  
+  #image-track {
+    display: flex;
+    gap: 4vmin;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(0%, -50%); 
+    user-select: none; /* -- Prevent image highlighting -- */
+  }
+  
+  #image-track > .image {
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100% center;
+  }
+    
+  /* cv.html */
+  
+  .hero-image {
+    display: flex;
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 20vh;
+    width: 100vw;
+  }
+  
+  .hero-image > .image {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: 100% center;
+  }
+  
+  .cv-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: auto;
+    width: 100%;
+  }
+  
+  .footer-content {
+  
+  }
