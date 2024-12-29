@@ -91,3 +91,17 @@ body, html {
   object-fit: cover;
   object-position: 100% center;
 }
+
+.main-title {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  opacity: 0; /* Start hidden */
+  transform: translateY(20px); /* Slide in from below */
+  transition: opacity 3s ease, transform 3s ease;
+}
+
+.main-title.visible {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Reset position */
+}

@@ -4,6 +4,7 @@ import "./Menu.css"; // Make sure your styles are in this file
 const Menu = () => {
   const [isVisible, setIsVisible] = useState(false); // Controls the visibility of the menu
   const [isLoaded, setIsLoaded] = useState(false); // To control the initial loading and animation of the house icon
+  const [isTitleVisible, setIsTitleVisible] = useState(false); //to control the main-title visibility
 
   const trackRef = useRef(null);
 
@@ -70,13 +71,19 @@ const Menu = () => {
 
   return (
     <div>
+      <div className={`main-title ${isTitleVisible ? "visible" : ""}`}>
+      <h1 className="raleway-thin-font-weight-100">Welcome to my portfolio!</h1>
+    </div>
       {/* Button to toggle visibility */}
       <div
-        className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${isVisible ? "hidden" : ""}`}
-        onClick={() => setIsVisible(!isVisible)} // Toggle visibility of the menu
+      className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${isVisible ? "hidden" : ""}`}
+      onClick={() => {
+      setIsVisible(!isVisible);
+      setIsTitleVisible(!isTitleVisible); // Toggle title visibility
+      }}
       >
-        {/* Font Awesome House Icon */}
-        <i className="fas fa-home"></i>
+      {/* Font Awesome House Icon */}
+      <i className="fas fa-home"></i>
       </div>
 
       {/* Menu Container */}
