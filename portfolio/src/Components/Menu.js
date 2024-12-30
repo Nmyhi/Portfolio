@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Menu.css"; // Make sure your styles are in this file
+import "./Menu.css";
 
 const Menu = () => {
   const [isVisible, setIsVisible] = useState(false); // Controls the visibility of the menu
   const [isLoaded, setIsLoaded] = useState(false); // To control the initial loading and animation of the house icon
-  const [isTitleVisible, setIsTitleVisible] = useState(false); //to control the main-title visibility
+  const [isTitleVisible, setIsTitleVisible] = useState(false); // Controls the main-title visibility
+  const [titleText, setTitleText] = useState("Welcome to my portfolio!"); // Controls the dynamic text
 
   const trackRef = useRef(null);
 
@@ -55,35 +56,39 @@ const Menu = () => {
     }
   };
 
-  const handleImageClick = (id) => {
-    console.log(id); // Logs the ID of the clicked image
+  const handleImageHover = (altText) => {
+    setTitleText(altText); // Update the title text when hovering over an image
+  };
+
+  const handleMouseLeave = () => {
+    setTitleText("Welcome to my portfolio!"); // Reset title text when mouse leaves the image
   };
 
   const images = [
-    { src: "https://drive.google.com/thumbnail?id=1oO406roXVYrU6wo8jPN2qyeBgukObxVG&sz=w1000", alt: "cv", id: "cv" },
-    { src: "https://drive.google.com/thumbnail?id=1LXH93tm22YsI4FlafTCPx2JHu9WrnfuO&sz=w1000", alt: "skills", id: "skills" },
-    { src: "https://drive.google.com/thumbnail?id=1VxNHQ3K9CP1tIoE-o1SzgLz42kbiOVw3&sz=w1000", alt: "goals", id: "goals" },
-    { src: "https://drive.google.com/thumbnail?id=1mVwyoZaYy_Q5TzbGnlaFyWzpD9ftb_ow&sz=w1000", alt: "hobbies", id: "hobbies" },
-    { src: "https://drive.google.com/thumbnail?id=10tq1kN7PzNCUwteclWiVLnwActBY7HcZ&sz=w1000", alt: "personal life", id: "personalLife" },
-    { src: "https://drive.google.com/thumbnail?id=1vSO6vmjtUr4UOutyOxwxZxGmP_ViW7vb&sz=w1000", alt: "project ideas", id: "projectIdeas" },
-    { src: "https://drive.google.com/thumbnail?id=1R2YFfqRi8EJLXJEJ5W8Y61DkSk4oikUP&sz=w1000", alt: "future plans", id: "futurePlans" },
+    { src: "https://drive.google.com/thumbnail?id=1Z8ZSvNGThpcOqNZDWnK9F75SkkZwKVVO&sz=w1000", alt: "About Me", id: "about-me" },
+    { src: "https://drive.google.com/thumbnail?id=1AXe6UivC9rzeCaXkJFh4WCfUxIUY49Ou&sz=w1000", alt: "Skills", id: "skills" },
+    { src: "https://drive.google.com/thumbnail?id=1uhnrHwzf5Rwljm-AvNBSqMzC2TwREQgQ&sz=w1000", alt: "Projects", id: "projects" },
+    { src: "https://drive.google.com/thumbnail?id=1HuDobjtlXNVioKj5QlwBSFzaPOwELH7Y&sz=w1000", alt: "Social Media", id: "social-media" },
+    { src: "https://drive.google.com/thumbnail?id=1ZB0Q_WrRjvMrHQFDn8bwMUn369261G4d&sz=w1000", alt: "Interests and Hobbies", id: "interests-and-hobbies" },
+    { src: "https://drive.google.com/thumbnail?id=1ro2plxe-LJfcWxAI__qvOGdluGQdD6oA&sz=w1000", alt: "Services", id: "services" },
+    { src: "https://drive.google.com/thumbnail?id=1FQYztdiVPUQerrEOspBqx6lr0PlO8stM&sz=w1000", alt: "Contact Me", id: "contact-me" },
   ];
 
   return (
     <div>
       <div className={`main-title ${isTitleVisible ? "visible" : ""}`}>
-      <h1 className="raleway-thin-font-weight-100">Welcome to my portfolio!</h1>
+        <h1 className="raleway-thin-font-weight-100">{titleText}</h1>
       </div>
       {/* Button to toggle visibility */}
       <div
-      className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${isVisible ? "hidden" : ""}`}
-      onClick={() => {
-      setIsVisible(!isVisible);
-      setIsTitleVisible(!isTitleVisible); // Toggle title visibility
-      }}
+        className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${isVisible ? "hidden" : ""}`}
+        onClick={() => {
+          setIsVisible(!isVisible);
+          setIsTitleVisible(!isTitleVisible); // Toggle title visibility
+        }}
       >
-      {/* Font Awesome House Icon */}
-      <i className="fas fa-home"></i>
+        {/* Font Awesome House Icon */}
+        <i className="fas fa-home"></i>
       </div>
 
       {/* Menu Container */}
@@ -110,7 +115,8 @@ const Menu = () => {
               className="image"
               draggable="false"
               id={image.id}
-              onClick={() => handleImageClick(image.id)}
+              onMouseEnter={() => handleImageHover(image.alt)}
+              onMouseLeave={handleMouseLeave}
             />
           ))}
         </div>
