@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Menu.css";
+import AboutMe from "./AboutMe"; // Import the AboutMe component
 
 const Menu = () => {
   const [isVisible, setIsVisible] = useState(false); // Controls the visibility of the menu
   const [isLoaded, setIsLoaded] = useState(false); // To control the initial loading and animation of the house icon
   const [isTitleVisible, setIsTitleVisible] = useState(false); // Controls the main-title visibility
   const [titleText, setTitleText] = useState("Welcome to my portfolio!"); // Controls the dynamic text
+  const [activeComponent, setActiveComponent] = useState(null); // Tracks which component is active
 
   const trackRef = useRef(null);
 
@@ -74,53 +76,67 @@ const Menu = () => {
     { src: "https://drive.google.com/thumbnail?id=1FQYztdiVPUQerrEOspBqx6lr0PlO8stM&sz=w1000", alt: "Contact Me", id: "contact-me" },
   ];
 
+  const handleImageClick = (id) => {
+    if (id === "about-me") {
+      setActiveComponent("about-me");
+    }
+  };
+
   return (
     <div>
-      <div className={`main-title ${isTitleVisible ? "visible" : ""}`}>
-        <h1 className="raleway-thin-font-weight-100">{titleText}</h1>
-      </div>
-      {/* Button to toggle visibility */}
-      <div
-        className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${isVisible ? "hidden" : ""}`}
-        onClick={() => {
-          setIsVisible(!isVisible);
-          setIsTitleVisible(!isTitleVisible); // Toggle title visibility
-        }}
-      >
-        {/* Font Awesome House Icon */}
-        <i className="fas fa-home"></i>
-      </div>
+      {activeComponent === "about-me" ? (
+        <AboutMe />
+      ) : (
+        <>
+          <div className={`main-title ${isTitleVisible ? "visible" : ""}`}>
+            <h1 className="raleway-thin-font-weight-100">{titleText}</h1>
+          </div>
+          {/* Button to toggle visibility */}
+          <div
+            className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${
+              isVisible ? "hidden" : ""
+            }`}
+            onClick={() => {
+              setIsVisible(!isVisible);
+              setIsTitleVisible(!isTitleVisible); // Toggle title visibility
+            }}
+          >
+            <i className="fas fa-home"></i>
+          </div>
 
-      {/* Menu Container */}
-      <div
-        className={`site-container ${isVisible ? "visible" : ""}`}
-        onMouseDown={handleOnDown}
-        onTouchStart={(e) => handleOnDown(e.touches[0])}
-        onMouseUp={handleOnUp}
-        onTouchEnd={(e) => handleOnUp(e.touches[0])}
-        onMouseMove={handleOnMove}
-        onTouchMove={(e) => handleOnMove(e.touches[0])}
-      >
-        <div
-          id="image-track"
-          ref={trackRef}
-          data-mouse-down-at="0"
-          data-prev-percentage="0"
-        >
-          {images.map((image) => (
-            <img
-              key={image.id}
-              src={image.src}
-              alt={image.alt}
-              className="image"
-              draggable="false"
-              id={image.id}
-              onMouseEnter={() => handleImageHover(image.alt)}
-              onMouseLeave={handleMouseLeave}
-            />
-          ))}
-        </div>
-      </div>
+          {/* Menu Container */}
+          <div
+            className={`site-container ${isVisible ? "visible" : ""}`}
+            onMouseDown={handleOnDown}
+            onTouchStart={(e) => handleOnDown(e.touches[0])}
+            onMouseUp={handleOnUp}
+            onTouchEnd={(e) => handleOnUp(e.touches[0])}
+            onMouseMove={handleOnMove}
+            onTouchMove={(e) => handleOnMove(e.touches[0])}
+          >
+            <div
+              id="image-track"
+              ref={trackRef}
+              data-mouse-down-at="0"
+              data-prev-percentage="0"
+            >
+              {images.map((image) => (
+                <img
+                  key={image.id}
+                  src={image.src}
+                  alt={image.alt}
+                  className="image"
+                  draggable="false"
+                  id={image.id}
+                  onMouseEnter={() => handleImageHover(image.alt)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => handleImageClick(image.id)} // Handle click
+                />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
