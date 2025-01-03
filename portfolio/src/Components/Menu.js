@@ -76,6 +76,18 @@ const Menu = () => {
     { src: "https://drive.google.com/thumbnail?id=1FQYztdiVPUQerrEOspBqx6lr0PlO8stM&sz=w1000", alt: "Contact Me", id: "contact-me" },
   ];
 
+  useEffect(() => {
+    // Enable scrolling for AboutMe component
+    if (activeComponent === "about-me") {
+      document.body.style.overflow = "auto"; // Allow scrolling
+    } else {
+      document.body.style.overflow = "hidden"; // Prevent scrolling for other components
+    }
+    return () => {
+      document.body.style.overflow = "hidden"; // Cleanup on unmount
+    };
+  }, [activeComponent]);
+
   const handleImageClick = (id) => {
     if (id === "about-me") {
       setActiveComponent("about-me");
