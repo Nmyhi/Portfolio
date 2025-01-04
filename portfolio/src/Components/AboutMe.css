@@ -1,22 +1,98 @@
+/* Ensure the container fills the full viewport */
 .about-me-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 50px auto;
-    text-align: center;
-  }
-  
-  .about-me-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .about-me-text {
-    font-size: 1.2rem;
-    color: #555;
-    line-height: 1.5;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  background-color: #f4f4f9;
+  padding: 0;
+  margin: 0;
+}
+
+/* Wrapper for the content */
+.about-me-wrapper {
+  display: flex;
+  flex-direction: row; /* Keep image and carousel side by side */
+  max-width: 1200px;
+  width: 90%; /* Responsive width */
+  height: auto; /* Adjust height based on content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Styling for the image */
+.about-me-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+.about-me-image img {
+  width: auto; /* Maintain original width */
+  height: auto; /* Maintain original height */
+  max-width: 100%; /* Make sure it doesn't overflow the container */
+  max-height: 100%; /* Keep it responsive */
+  border-radius: 10px; /* Optional rounded corners */
+}
+
+/* Carousel section */
+.about-me-carousel {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Title styling */
+.carousel-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Content and text styling */
+.carousel-content p,
+.carousel-content ul {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 auto;
+  text-align: justify;
+  max-width: 600px; /* Limit width for better readability */
+}
+
+.carousel-content ul {
+  padding-left: 20px;
+}
+
+/* Carousel navigation buttons */
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.prev-button,
+.next-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  background-color: #0056b3;
+}
