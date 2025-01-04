@@ -19,7 +19,7 @@ const AboutMe = () => {
       title: "Passion for Creativity",
       content: (
         <p className="raleway-thin-font-weight-100">
-          My passion for technology extends beyond my job—I love working on laser-cutting and engraving projects, a hobby that eventually led me to discover my interest in web development. I’m also fascinated by lighting design and even create <strong>biophilic cardboard lampshades</strong> as a blend of my technical and creative skills.
+          My passion for technology extends beyond my job, I love working on laser-cutting and engraving projects, a hobby that eventually led me to discover my interest in web development. I’m also fascinated by lighting design and even create <strong>biophilic cardboard lampshades</strong> as a blend of my technical and creative skills.
         </p>
       ),
     },
