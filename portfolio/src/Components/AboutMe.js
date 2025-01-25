@@ -99,6 +99,11 @@ const AboutMe = () => {
           </div>
         </div>
       </div>
+      <div className="home-wrapper">
+        <div className="home-button">
+          <i className="fas fa-home"></i>
+        </div>
+      </div>
     </div>
   );
 };

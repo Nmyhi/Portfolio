@@ -138,3 +138,17 @@
   opacity: 1;
   transform: translateY(0); /* Reset position while fading in */
 }
+
+.home-wrapper {
+  display: flex;
+  position: fixed;
+  top: 90vh;
+}
+
+.home-button {
+  background-image: initial;
+  background-color: rgb(34, 36, 42);
+  color: rgb(205, 203, 200);
+  box-shadow: rgba(6, 6, 6, 0.1) 0px 4px 6px;
+  font-size: 3rem;
+}
