@@ -1,7 +1,7 @@
 body, html {
   width: 100vw;
   background-color: black;
-  margin: 0rem;
+  margin: 0;
   overflow: hidden;
   min-height: 100%;
 }
@@ -18,7 +18,7 @@ body, html {
   z-index: 10; /* Ensure the menu is on top */
   width: 100vw;
   min-height: 100vh;
-  transition: opacity 2s ease-in-out, transform 2s ease-in-out, visibility 2s 2s; /* Adjusted transition time to 1s for smoothness */
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out, visibility 2s 2s; /* Smooth transition */
 }
 
 /* When menu is visible */
@@ -26,52 +26,7 @@ body, html {
   opacity: 1; /* Fully visible */
   transform: scale(1); /* Normal size */
   visibility: visible; /* Make it interactive */
-  transition: opacity 2s ease-in-out, transform 2s ease-in-out; /* Apply transition on appearance */
-}
-
-/* House icon (menu button) */
-.menu-label {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  font-size: 3rem; /* Adjust the size of the icon */
-  text-align: center;
-  background: #282c34;
-  color: #fff;
-  padding: 0.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: opacity 2s ease-in-out, transform 2s ease-in-out; /* Adjusted for the same transition time */
-  z-index: 20;
-  
-  /* Start with hidden */
-  opacity: 0;
-}
-
-/* When the menu is visible, the opacity will change to 1 */
-.menu-label.visible {
-  opacity: 1;
-}
-
-.menu-label:hover {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(224, 228, 231, 0.6);
-  color: #c2c8cc; /* Slightly change the text color for effect */
-  transition: box-shadow 1.5s ease, color 1.5s ease; /* Slowed down the glow effect */
-}
-
-.menu-label h1 {
-  margin: 0; /* Remove any default margin from h1 */
-  padding: 0; /* Remove padding if any */
-  font-size: inherit; /* Inherit font-size from .menu-label */
-}
-
-/* Make the button disappear when the menu is visible */
-.menu-label.hidden {
-  opacity: 0; /* Hide button */
-  visibility: hidden; /* Remove interaction */
-  pointer-events: none; /* Disable clicks on the button */
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
 }
 
 /* Image styles */
@@ -98,6 +53,7 @@ body, html {
   object-position: 100% center;
 }
 
+/* Title */
 .main-title {
   display: flex;
   justify-content: center; /* Horizontally center */
@@ -112,3 +68,14 @@ body, html {
   transform: translateY(0); /* Reset position */
 }
 
+.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}

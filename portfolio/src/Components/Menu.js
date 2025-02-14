@@ -3,17 +3,19 @@ import "./Menu.css";
 import AboutMe from "./AboutMe"; // Import the AboutMe component
 
 const Menu = () => {
+  const [activeComponent, setActiveComponent] = useState("menu"); // Tracks active component
   const [isVisible, setIsVisible] = useState(false); // Controls the visibility of the menu
   const [isLoaded, setIsLoaded] = useState(false); // To control the initial loading and animation of the house icon
   const [isTitleVisible, setIsTitleVisible] = useState(false); // Controls the main-title visibility
   const [titleText, setTitleText] = useState("Welcome to my portfolio!"); // Controls the dynamic text
-  const [activeComponent, setActiveComponent] = useState(null); // Tracks which component is active
 
   const trackRef = useRef(null);
 
   useEffect(() => {
     // Trigger the fade-in effect after the component is mounted
     setIsLoaded(true);
+    setIsVisible(true);
+    setIsTitleVisible(true);
   }, []);
 
   const handleOnDown = (e) => {
@@ -89,32 +91,20 @@ const Menu = () => {
   }, [activeComponent]);
 
   const handleImageClick = (id) => {
-    if (id === "about-me") {
-      setActiveComponent("about-me");
-    }
+    setActiveComponent(id);
   };
 
   return (
     <div>
       {activeComponent === "about-me" ? (
-        <AboutMe />
+        <AboutMe onBack={() => setActiveComponent("menu")} />
       ) : (
         <>
           <div className={`main-title ${isTitleVisible ? "visible" : ""}`}>
             <h1 className="raleway-thin-font-weight-100">{titleText}</h1>
           </div>
           {/* Button to toggle visibility */}
-          <div
-            className={`menu-label ${isLoaded && !isVisible ? "visible" : ""} ${
-              isVisible ? "hidden" : ""
-            }`}
-            onClick={() => {
-              setIsVisible(!isVisible);
-              setIsTitleVisible(!isTitleVisible); // Toggle title visibility
-            }}
-          >
-            <i className="fas fa-home"></i>
-          </div>
+          
 
           {/* Menu Container */}
           <div

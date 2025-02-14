@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./AboutMe.css";
 
-const AboutMe = () => {
+const AboutMe = ({onBack}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const [isComponentVisible, setIsComponentVisible] = useState(false); // Controls the whole component fade-in
@@ -101,7 +101,7 @@ const AboutMe = () => {
       </div>
       <div className="home-wrapper">
         <div className="home-button">
-          <i className="fas fa-home"></i>
+          <i className="fas fa-home" onClick={onBack}></i>
         </div>
       </div>
     </div>
